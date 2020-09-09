@@ -20,7 +20,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        fetchData()
+        
     }
     
     @IBAction func saveTapped(_ sender: Any) {
@@ -30,6 +32,27 @@ class ViewController: UIViewController {
         
         fetchData()
     }
+    
+    
+    @IBAction func deleteTapped(_ sender: Any) {
+        
+        let storedName = UserDefaults.standard.object(forKey: "Name")
+        let storedBirth = UserDefaults.standard.object(forKey: "Birthday")
+        
+        if (storedName as? String) != nil {
+            
+            UserDefaults.standard.removeObject(forKey: "Name")
+            nameLabel.text = "Name: "
+        }
+        
+        if (storedBirth as? String) != nil {
+            
+            UserDefaults.standard.removeObject(forKey: "Birthday")
+            birthLabel.text = "Birthday: "
+        }
+        
+    }
+    
     
     func fetchData() {
         
